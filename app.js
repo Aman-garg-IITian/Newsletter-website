@@ -38,6 +38,9 @@ app.post("/", function(req, res){
     };
     console.log("aman:" + process.env.API_KEY)
     const request = https.request(url, options, function(response){
+        response.on("data", function(data){
+            console.log(data);
+        });
         if(response.statusCode === 200){
             res.sendFile(__dirname + "/success.html");
         }
