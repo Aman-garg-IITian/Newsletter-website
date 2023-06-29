@@ -31,16 +31,17 @@ app.post("/", function(req, res){
     const jsonData = JSON.stringify(data);
 
     const url = "https://us21.api.mailchimp.com/3.0/lists/" + process.env.LIST_ID;
+    console.log(url);
     const options = {
         method: "POST",
         auth: "aman:" + process.env.API_KEY
     };
+    console.log("aman:" + process.env.API_KEY)
     const request = https.request(url, options, function(response){
         if(response.statusCode === 200){
             res.sendFile(__dirname + "/success.html");
         }
         else{
-            console.log(response);
             res.sendFile(__dirname + "/failure.html");
         }
     });
